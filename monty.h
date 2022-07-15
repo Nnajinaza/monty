@@ -12,7 +12,8 @@
 #include <unistd.h>
 
 #define DELIMS " \n\t\a\b"
-
+#define STACK 0
+#define QUEUE 1
 /*global opcode command*/
 extern char **args;
 /**
@@ -53,6 +54,13 @@ void _push(stack_t **stack, unsigned int line_number);
 void _pall(stack_t **stack, unsigned int line_number);
 
 /* helper function */
-int is_int(char *str);
+int _getline(FILE *fd);
+unsigned int token_len(void);
+char **_strtok(char *str, char *delims);
+int is_delim(char ch, char *delims);
+int get_word_length(char *str, char *delims);
+int get_word_count(char *str, char *delims);
+char *get_next_word(char *str, char *delims);
+int check_type(stack_t *stack);
 
 #endif

@@ -7,9 +7,16 @@
  */
 void _push(stack_t **stack, unsigned int line_number)
 {
-	stack_t *new;
+	stack_t *new, *tmp;
 	int i;
-	
+
+	new = malloc(sizeof(stack_t));
+	if (new == NULL || stack == NULL)
+	{
+		fprintf(stderr, "Error: malloc failed\n");
+		exit(EXIT_FAILURE);
+	}
+
 	if (args[1] == NULL)
 	{
 		fprintf(stderr, "L%d: usage: push integer\n", line_number);
@@ -27,26 +34,25 @@ void _push(stack_t **stack, unsigned int line_number)
 		}
 	}
 
-	new = malloc(sizeof(stack_t));
-	if (new == NULL || stack == NULL)
-	{
-		fprintf(stderr, "Error: malloc failed\n");
-		exit(EXIT_FAILURE);
-	}
-
 	new->n = atoi(args[1]);
-	if (*stack == NULL)
+
+	if (check_type(*stack) == STACK)
 	{
-		*stack = new;
-		(*stack)->prev = NULL;
-		(*stack)->next = NULL;
+		tmp = (*stack)->next;
+		new->prev = *stack;
+		new->next = tmp;
+		if (tmp)
+			tmp->prev = new;
+		(*stack)->next = new;
 	}
 	else
 	{
-		(*stack)->prev = new;
-		new->next = *stack;
-		new->prev = NULL;
-		*stack = new;
+		tmp = *stack;
+		while (tmp->next)
+			tmp = tmp->next;
+		new->prev = tmp;
+		new->next = NULL;
+		tmp->next = new;
 	}
 }
 
@@ -65,4 +71,13 @@ void _pall(stack_t **stack, unsigned int line_number)
 		tmp = tmp->next;
 	}
 	(void)line_number;
+}
+
+int check_type(stack_t *stack)
+{
+	if (stack->n == STACK)
+		return (STACK);
+	else if (stack->n == QUEUE)
+		return (QUEUE);
+	return (2);
 }

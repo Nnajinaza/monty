@@ -19,17 +19,17 @@ int _getline(FILE *fd)
 	size_t len = 0, exit_status = EXIT_SUCCESS;
 	void (*cmd_opt)(stack_t**, unsigned int);
 
-	while (getline(&lineptr, &len, fd) != EOF)
+	while (getline(&lineptr, &len, fd) != -1)
 	{
 		line_number++;
-		args[1] = strtok(lineptr, DELIMS);
+		args = _strtok(lineptr, DELIMS);
 		if (args == NULL)
 		{
 			fprintf(stderr, "Error:");
 			exit(EXIT_FAILURE);
 		}
-		cmd_opt = get_opts(args[1]);
-		if (!cmd_opt)
+		cmd_opt = get_opts(args[0]);
+		if (cmd_opt == NULL)
 		{
 			fprintf(stderr, "L%d: unknown instruction %s", line_number, *args);
 			exit(EXIT_FAILURE);
