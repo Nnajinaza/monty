@@ -33,6 +33,11 @@ int main(int argc, char **argv)
 	{
 		if (status)
 			break;
+		if (*lineptr == '\n')
+		{
+			line_number++;
+			continue;
+		}
 		str = strtok(lineptr, " \t\n");
 		if (str == NULL)
 		{
@@ -44,6 +49,7 @@ int main(int argc, char **argv)
 		line_number++;
 	}
 	free(lineptr);
+	free_stack(stack);
 	fclose(fd);
 	exit(EXIT_SUCCESS);
 }

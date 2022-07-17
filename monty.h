@@ -76,5 +76,6 @@ void pall(stack_t **stack, unsigned int line_number);
 int _getline(FILE *fd);
 void free_tokens(char **args);
 int is_digit(char *str);
+void free_stack(stack_t *stack);
 
 #endif

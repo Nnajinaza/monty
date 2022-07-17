@@ -1,18 +1,25 @@
 #include "monty.h"
 
-/** free_tokens- Frees the global op_toks array of strings.
+/**
+ * free_stack - function to free stack
  */
-void free_tokens(char **args)
+void free_stack(stack_t *stack)
 {
-	size_t i = 0;
+	stack_t *current = stack;
+	stack_t *next;
 
-	if (args == NULL)
-		return;
-	for (i = 0; args[i]; i++)
-		free(args[i]);
-	free(args);
+	if (stack)
+	{
+		next = stack->next;
+		while (current)
+		{
+			free(current);
+			current = next;
+			if (next)
+				next = next->next;
+		}
+	}
 }
-
 
 /**
  * is_digit - checks if a string is a digit
