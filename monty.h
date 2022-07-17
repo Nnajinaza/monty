@@ -22,6 +22,7 @@
 		{"nop", nop},	\
 		{"sub", sub},	\
 		{"div", _div},	\
+		{"mod", _mod},	\
 		{NULL, NULL}	\
 	}
 /**

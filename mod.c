@@ -1,11 +1,11 @@
 #include "monty.h"
 
 /**
- * _div - function to add the first two node
+ * _mod - function to add the first two node
  * @stack: pointer to the list
  * @line_number: current line
  */
-void _div(stack_t **stack, unsigned int line_number)
+void _mod(stack_t **stack, unsigned int line_number)
 {
 	stack_t *tmp = *stack;
 	int first, second, sum;
@@ -23,7 +23,7 @@ void _div(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 	second = (*stack)->next->n;
-	sum = second / first;
+	sum = second % first;
 	*stack = (*stack)->next;
 	if (*stack != NULL)
 		(*stack)->prev = NULL;
