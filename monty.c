@@ -12,7 +12,7 @@ int main(int argc, char **argv)
 {
 	FILE *fd = NULL;
 	stack_t *stack = NULL;
-	unsigned int line_number = 1;
+	unsigned int line_number = 0;
 	char *lineptr = NULL, *str = NULL;
 	size_t len = 0;
 
