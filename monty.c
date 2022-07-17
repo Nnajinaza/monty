@@ -10,10 +10,10 @@
  */
 int main(int argc, char **argv)
 {
-	FILE *fd;
+	FILE *fd = NULL;
 	stack_t *stack = NULL;
 	unsigned int line_number = 1;
-	char *lineptr = NULL, *str;
+	char *lineptr = NULL, *str = NULL;
 	size_t len = 0;
 
 	global.format = 1;
