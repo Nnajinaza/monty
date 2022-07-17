@@ -2,7 +2,7 @@
 
 /**
  * swap - function to swap the first two nodes
- * @token: pointer to the list
+ * @stack: pointer to the list
  * @line_number: current line
  */
 void swap(stack_t **stack, unsigned int line_number)
