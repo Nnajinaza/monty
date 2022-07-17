@@ -75,13 +75,16 @@ stack_t *tail_stack(stack_t **stack, const int n)
 		*stack = new;
 		return (new);
 	}
-	else
+	while (current)
 	{
-		while (current->next != NULL)
-			current = current->next;
-		current->next = new;
-		new->prev = current;
-		new->next = NULL;
+		if (current->next != NULL)
+		{
+			new->next = NULL;
+			new->prev = current;
+			current->next = new;
+			break;
+		}
+		current = current->next;
 	}
 	return (new);
 }
@@ -106,6 +109,8 @@ stack_t *head_stack(stack_t **stack, const int n)
 	new->n = n;
 	new->prev = NULL;
 	new->next = *stack;
+	if (*stack)
+		(*stack)->prev = new;
 
 	*stack = new;
 
