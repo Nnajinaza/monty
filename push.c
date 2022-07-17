@@ -18,16 +18,12 @@ void push(stack_t **stack, unsigned int line_number)
 	if (global.format == 0)
 	{
 		if (!head_stack(stack, atoi(new_args)))
-		{
 			exit(EXIT_FAILURE);
-		}
 	}
 	else
 	{
 		if (!tail_stack(stack, atoi(new_args)))
-		{
 			exit(EXIT_FAILURE);
-		}
 	}
 }
 
