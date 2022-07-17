@@ -32,6 +32,6 @@ void get_opts(stack_t **stack, char *opt, unsigned int line_number)
 			return;
 		}
 	}
-	fprintf(stderr, "L%d: unknown instruction %s\n", line_number, opt);
+	fprintf(stderr, "L%u: unknown instruction %s\n", line_number, opt);
 	exit(EXIT_FAILURE);
 }

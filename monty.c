@@ -12,7 +12,7 @@ int main(int argc, char **argv)
 {
 	FILE *fd = NULL;
 	stack_t *stack = NULL;
-	unsigned int line_number = 1;
+	size_t line_number = 1;
 	char *lineptr = NULL, *str = NULL;
 	size_t len = 0;
 
@@ -35,13 +35,13 @@ int main(int argc, char **argv)
 			line_number++;
 			continue;
 		}
-		str = strtok(lineptr, " \t\n");
+		str = strtok(lineptr, " \t\n\r");
 		if (str == NULL)
 		{
 			fprintf(stderr, "Error:");
 			exit(EXIT_FAILURE);
 		}
-		global.args = strtok(NULL, " \t\n");
+		global.args = strtok(NULL, " \t\n\r");
 		get_opts(&stack, str, line_number);
 		line_number++;
 	}
