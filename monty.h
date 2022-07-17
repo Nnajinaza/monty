@@ -20,6 +20,8 @@
 		{"swap", swap},	\
 		{"add", add},	\
 		{"nop", nop},	\
+		{"sub", sub},	\
+		{"div", _div},	\
 		{NULL, NULL}	\
 	}
 /**
@@ -81,6 +83,8 @@ void pop(stack_t **stack, unsigned int line_number);
 void swap(stack_t **stack, unsigned int line_number);
 void add(stack_t **stack, unsigned int line_number);
 void nop(stack_t **stack, unsigned int line_number);
+void sub(stack_t **stack, unsigned int line_number);
+void _div(stack_t **stack, unsigned int line_number);
 
 /* helper function */
 int _getline(FILE *fd);
