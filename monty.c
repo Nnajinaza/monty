@@ -38,8 +38,6 @@ int main(int argc, char **argv)
 		if (str == NULL)
 		{
 			fprintf(stderr, "Error:");
-			free(str);
-			fclose(fd);
 			exit(EXIT_FAILURE);
 		}
 		global.args = strtok(NULL, " \t\n\r");
