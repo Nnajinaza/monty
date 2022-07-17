@@ -1,11 +1,11 @@
 #include "monty.h"
 
 /**
- * _mod - function to add the first two node
+ * mod - function to add the first two node
  * @stack: pointer to the list
  * @line_number: current line
  */
-void _mod(stack_t **stack, unsigned int line_number)
+void mod(stack_t **stack, unsigned int line_number)
 {
 	stack_t *tmp = *stack;
 	int first, second, sum;

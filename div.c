@@ -23,7 +23,7 @@ void _div(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 	second = (*stack)->next->n;
-	sum = second / first;
+	sum = first / second;
 	*stack = (*stack)->next;
 	if (*stack != NULL)
 		(*stack)->prev = NULL;
