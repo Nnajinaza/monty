@@ -16,6 +16,7 @@
 		{"push", push},	\
 		{"pall", pall},	\
 		{"pint", pint}, \
+		{"pop", pop},	\
 		{NULL, NULL}	\
 	}
 /**
@@ -73,6 +74,7 @@ stack_t *tail_stack(stack_t **stack, const int n);
 void push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
 void pint(stack_t **stack, unsigned int line_number);
+void pop(stack_t **stack, unsigned int line_number);
 
 /* helper function */
 int _getline(FILE *fd);
