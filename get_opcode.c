@@ -2,7 +2,10 @@
 
 /**
  * get_opts - function to return the corresponding function
- * @opcode: the opcode passed
+ * @opt: the opcode passed
+ * @stack: pointer to the stack
+ * @line_number: current line number
+ *
  * Return: A pointer to the corresponding function
  */
 void get_opts(char *opt, stack_t **stack, unsigned int line_number)
@@ -20,7 +23,7 @@ void get_opts(char *opt, stack_t **stack, unsigned int line_number)
 	{
 		global.format = 0;
 		return;
-	}			
+	}
 	while (opts[i].opcode)
 	{
 		if (strcmp(opts[i].opcode, opt) == 0)

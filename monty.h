@@ -11,11 +11,11 @@
 #include <string.h>
 #include <unistd.h>
 
-#define INSTRUCTION			\
-	{				\
-		{"push", push},		\
-		{"pall", pall}, 	\
-		{NULL, NULL}		\
+#define INSTRUCTION		\
+	{			\
+		{"push", push},	\
+		{"pall", pall},	\
+		{NULL, NULL}	\
 	}
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)

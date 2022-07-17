@@ -1,7 +1,7 @@
 #include "monty.h"
 
 /**
- * _push - function to push a node to the list
+ * push - function to push a node to the list
  * @stack: pointer to the list
  * @line_number: current line number
  */
@@ -18,17 +18,21 @@ void push(stack_t **stack, unsigned int line_number)
 	if (global.format == 1)
 	{
 		if (!head_stack(stack, atoi(global.args)))
+		{
 			exit(EXIT_FAILURE);
+		}
 	}
 	else
 	{
-		if(!tail_stack(stack, atoi(global.args)))
+		if (!tail_stack(stack, atoi(global.args)))
+		{
 			exit(EXIT_FAILURE);
+		}
 	}
 }
 
 /**
- * _pall - function to print all the values of stack
+ * pall - function to print all the values of stack
  * @stack: pointer to the list
  * @line_number: the current line number
  */
@@ -85,6 +89,7 @@ stack_t *tail_stack(stack_t **stack, const int n)
 /**
  * head_stack - Initializes a stack_t stack with beginning
  * @stack: A pointer to an unitialized stack_t stack.
+ * @n: integer value
  *
  * Return: The new stack
  */
