@@ -6,4 +6,5 @@ sub
 pall
 div
 pall
-
+mul
+pall
