@@ -12,7 +12,7 @@ void pint(stack_t **stack, unsigned int line_number)
 {
 	stack_t *top = *stack;
 
-	if (*stack == NULL || stack == NULL)
+	if (*stack == NULL || top == NULL)
 	{
 		fprintf(stderr, "L%d: can't pint, stack", line_number);
 		exit(EXIT_FAILURE);
