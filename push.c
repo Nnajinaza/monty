@@ -15,7 +15,7 @@ void push(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 
-	if (global.format == 1)
+	if (global.format == 0)
 	{
 		if (!head_stack(stack, atoi(new_args)))
 		{
