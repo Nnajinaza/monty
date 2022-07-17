@@ -11,11 +11,12 @@
 #include <string.h>
 #include <unistd.h>
 
-#define DELIMS " \n\t\a\b"
-#define STACK 0
-#define QUEUE 1
-/*global opcode command*/
-extern char **args;
+#define INSTRUCTION			\
+	{				\
+		{"push", push},		\
+		{"pall", pall}, 	\
+		{NULL, NULL}		\
+	}
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -46,21 +47,34 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+/**
+ * struct args - passing the global argument
+ * @format: detemine if it is stack or queue
+ * @args: argument to be passed
+ *
+ * Description: global argument
+ */
+typedef struct args
+{
+	int format;
+	char *args;
+} args;
+args global;
+
 /* function to check the opcode passed*/
-void (*get_opts(char *opcode))(stack_t**, unsigned int);
+void get_opts(char *opt, stack_t **stack, unsigned int line_number);
+
+/* linked list function */
+stack_t *head_stack(stack_t **stack, const int n);
+stack_t *tail_stack(stack_t **stack, const int n);
 
 /* opcode funnctions */
-void _push(stack_t **stack, unsigned int line_number);
-void _pall(stack_t **stack, unsigned int line_number);
+void push(stack_t **stack, unsigned int line_number);
+void pall(stack_t **stack, unsigned int line_number);
 
 /* helper function */
 int _getline(FILE *fd);
-unsigned int token_len(void);
-char **_strtok(char *str, char *delims);
-int is_delim(char ch, char *delims);
-int get_word_length(char *str, char *delims);
-int get_word_count(char *str, char *delims);
-char *get_next_word(char *str, char *delims);
-int check_type(stack_t *stack);
+void free_tokens(char **args);
+int is_digit(char *str);
 
 #endif

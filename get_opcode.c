@@ -5,21 +5,31 @@
  * @opcode: the opcode passed
  * Return: A pointer to the corresponding function
  */
-void (*get_opts(char *opcode))(stack_t**, unsigned int)
+void get_opts(char *opt, stack_t **stack, unsigned int line_number)
 {
-	instruction_t opts[] = {
-		{"push", _push},
-		{"pall", _pall},
-		{"NULL", NULL}
-	};
+	instruction_t opts[] = INSTRUCTION;
 
-	int i;
+	int i = 0;
 
-	for (i = 0; opts[i].opcode != NULL; i++)
+	if (!strcmp(opt, "stack"))
 	{
-		if (strcmp(opts[i].opcode, opcode) == 0)
-			return (opts[i].f);
+		global.format = 1;
+		return;
 	}
-
-	return (NULL);
+	if (!strcmp(opt, "queue"))
+	{
+		global.format = 0;
+		return;
+	}			
+	while (opts[i].opcode)
+	{
+		if (strcmp(opts[i].opcode, opt) == 0)
+		{
+			opts[i].f(stack, line_number);
+			return;
+		}
+		i++;
+	}
+	fprintf(stderr, "L%d: unknown instruction %s\n", line_number, opt);
+	exit(EXIT_FAILURE);
 }

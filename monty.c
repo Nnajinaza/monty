@@ -1,58 +1,25 @@
 #include "monty.h"
 #include <string.h>
 
-char **args = NULL;
+int status = 0;
 
-unsigned int token_len(void)
-{
-	unsigned int len = 0;
-
-	while (args[len])
-		len++;
-	return(len);
-}
-int _getline(FILE *fd)
-{
-	stack_t *stack = NULL;
-	unsigned int line_number = 0, len_tok = 0;
-	char *lineptr = NULL;
-	size_t len = 0, exit_status = EXIT_SUCCESS;
-	void (*cmd_opt)(stack_t**, unsigned int);
-
-	while (getline(&lineptr, &len, fd) != -1)
-	{
-		line_number++;
-		args = _strtok(lineptr, DELIMS);
-		if (args == NULL)
-		{
-			fprintf(stderr, "Error:");
-			exit(EXIT_FAILURE);
-		}
-		cmd_opt = get_opts(args[0]);
-		if (cmd_opt == NULL)
-		{
-			fprintf(stderr, "L%d: unknown instruction %s", line_number, *args);
-			exit(EXIT_FAILURE);
-		}
-		cmd_opt(&stack, line_number);
-		if (token_len() != len_tok)
-		{
-			if (args[len_tok])
-				exit_status = atoi(args[len_tok]);
-			else
-				exit_status = EXIT_FAILURE;
-		}
-	}
-	return (exit_status);
-}
-
+/**
+ * _getline - function to read the file
+ * @fd: file to be read
+ *
+ * Return: exit_status
+ */
 int main(int argc, char **argv)
 {
-	FILE *fd = NULL;
-	int exit_code = EXIT_SUCCESS;
+	FILE *fd;
+	stack_t *stack = NULL;
+	unsigned int line_number = 1;
+	char *lineptr = NULL, *str;
+	size_t len = 0;
 
+	global.format = 1;	
 	if (argc != 2)
-	{
+        {
 		fprintf(stderr, "Usage: monty file\n");
 		exit(EXIT_FAILURE);
 	}
@@ -62,6 +29,21 @@ int main(int argc, char **argv)
 		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
-	exit_code = _getline(fd);
-	return (exit_code);
+	while (getline(&lineptr, &len, fd) != -1)
+	{
+		if (status)
+			break;
+		str = strtok(lineptr, " \t\n");
+		if (str == NULL)
+		{
+			fprintf(stderr, "Error:");
+			exit(EXIT_FAILURE);
+		}
+		global.args = strtok(NULL, " \t\n");
+		get_opts(str, &stack, line_number);
+		line_number++;
+	}
+	free(lineptr);
+	fclose(fd);
+	exit(EXIT_SUCCESS);
 }
