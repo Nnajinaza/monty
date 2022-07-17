@@ -9,22 +9,22 @@ void push(stack_t **stack, unsigned int line_number)
 {
 	char *new_args = global.args;
 
-	if (is_digit(new_args) == 0)
+	if (is_digit(new_args) == 0 || new_args == NULL)
 	{
-		fprintf(stderr, "L%d: usage: push integer\n", line_number);
+		fprintf(stderr, "L%u: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 
 	if (global.format == 1)
 	{
-		if (!head_stack(stack, atoi(global.args)))
+		if (!head_stack(stack, atoi(new_args)))
 		{
 			exit(EXIT_FAILURE);
 		}
 	}
 	else
 	{
-		if (!tail_stack(stack, atoi(global.args)))
+		if (!tail_stack(stack, atoi(new_args)))
 		{
 			exit(EXIT_FAILURE);
 		}

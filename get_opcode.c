@@ -24,7 +24,7 @@ void get_opts(char *opt, stack_t **stack, unsigned int line_number)
 		global.format = 0;
 		return;
 	}
-	while (opts[i].opcode)
+	while (opts[i].opcode != NULL)
 	{
 		if (strcmp(opts[i].opcode, opt) == 0)
 		{
