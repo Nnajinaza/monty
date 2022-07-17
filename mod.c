@@ -7,7 +7,6 @@
  */
 void mod(stack_t **stack, unsigned int line_number)
 {
-	stack_t *tmp = *stack;
 	int first, second, sum;
 
 	if (*stack == NULL || stack == NULL || (*stack)->next == NULL)
@@ -24,9 +23,6 @@ void mod(stack_t **stack, unsigned int line_number)
 	}
 	second = (*stack)->next->n;
 	sum = second % first;
-	*stack = (*stack)->next;
-	if (*stack != NULL)
-		(*stack)->prev = NULL;
+	pop(stack, line_number);
 	(*stack)->n = sum;
-	free(tmp);
 }

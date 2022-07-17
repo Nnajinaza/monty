@@ -7,7 +7,6 @@
  */
 void sub(stack_t **stack, unsigned int line_number)
 {
-	stack_t *tmp = *stack;
 	int first, second, diff;
 
 	if (*stack == NULL || stack == NULL || (*stack)->next == NULL)
@@ -18,9 +17,6 @@ void sub(stack_t **stack, unsigned int line_number)
 	first = (*stack)->n;
 	second = (*stack)->next->n;
 	diff = second - first;
-	*stack = (*stack)->next;
-	if (*stack != NULL)
-		(*stack)->prev = NULL;
+	pop(stack, line_number);
 	(*stack)->n = diff;
-	free(tmp);
 }
