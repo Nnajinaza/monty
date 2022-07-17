@@ -62,7 +62,7 @@ typedef struct args
 args global;
 
 /* function to check the opcode passed*/
-void get_opts(char *opt, stack_t **stack, unsigned int line_number);
+void get_opts(stack_t **stack, char *opt, unsigned int line_number);
 
 /* linked list function */
 stack_t *head_stack(stack_t **stack, const int n);

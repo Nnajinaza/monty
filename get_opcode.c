@@ -8,11 +8,11 @@
  *
  * Return: A pointer to the corresponding function
  */
-void get_opts(char *opt, stack_t **stack, unsigned int line_number)
+void get_opts(stack_t **stack, char *opt, unsigned int line_number)
 {
 	instruction_t opts[] = INSTRUCTION;
 
-	int i = 0;
+	int i;
 
 	if (!strcmp(opt, "stack"))
 	{
@@ -24,14 +24,13 @@ void get_opts(char *opt, stack_t **stack, unsigned int line_number)
 		global.format = 0;
 		return;
 	}
-	while (opts[i].opcode != NULL)
+	for (i = 0; opts[i].opcode != NULL; i++)
 	{
 		if (strcmp(opts[i].opcode, opt) == 0)
 		{
 			opts[i].f(stack, line_number);
 			return;
 		}
-		i++;
 	}
 	fprintf(stderr, "L%d: unknown instruction %s\n", line_number, opt);
 	exit(EXIT_FAILURE);
