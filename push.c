@@ -44,8 +44,12 @@ void pall(stack_t **stack, unsigned int line_number)
 
 	while (current != NULL)
 	{
-		fprintf(stderr, "%d\n", current->n);
+		printf("%d\n", current->n);
 		current = current->next;
+		if (current == *stack)
+		{
+			return;
+		}
 	}
 }
 
@@ -98,7 +102,7 @@ stack_t *head_stack(stack_t **stack, const int n)
 	stack_t *new;
 
 	new = malloc(sizeof(stack_t));
-	if (new == NULL)
+	if (new == NULL || stack == NULL)
 	{
 		fprintf(stderr, "Error: malloc failed");
 		exit(EXIT_FAILURE);
