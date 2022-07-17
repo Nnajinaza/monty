@@ -28,11 +28,11 @@ int is_digit(char *string)
 		return (0);
 	if (string[i] == '-')
 		string++;
-	while (string[i])
+	while (string[i] != '\0')
 	{
 		if (isdigit(string[i]) == 0)
-			return (1);
+			return (0);
 		string++;
 	}
-	return (0);
+	return (1);
 }

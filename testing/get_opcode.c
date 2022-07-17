@@ -25,9 +25,11 @@ void get_opts(char *opt, stack_t **stack, unsigned int line_number)
 	{
 		if (strcmp(opts[i].opcode, opt) == 0)
 		{
-			opts[i].f(line_number, stack);
+			opts[i].f(stack, line_number);
 			return;
 		}
 		i++;
 	}
+	fprintf(stderr, "L%d: unknown instruction %s\n", line_number, opt);
+	exit(EXIT_FAILURE);
 }

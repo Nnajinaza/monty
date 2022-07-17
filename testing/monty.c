@@ -1,6 +1,8 @@
 #include "monty.h"
 #include <string.h>
 
+int status = 0;
+
 /**
  * _getline - function to read the file
  * @fd: file to be read
@@ -14,8 +16,8 @@ int main(int argc, char **argv)
 	unsigned int line_number = 1;
 	char *lineptr = NULL, *str;
 	size_t len = 0;
-	
-	global.format = 1;
+
+	global.format = 1;	
 	if (argc != 2)
         {
 		fprintf(stderr, "Usage: monty file\n");
@@ -29,12 +31,15 @@ int main(int argc, char **argv)
 	}
 	while (getline(&lineptr, &len, fd) != -1)
 	{
-		str = strtok(lineptr, " \t\n\r");
+		if (status)
+			break;
+		str = strtok(lineptr, " \t\n");
 		if (str == NULL)
 		{
 			fprintf(stderr, "Error:");
 			exit(EXIT_FAILURE);
 		}
+		global.args = strtok(NULL, " \t\n");
 		get_opts(str, &stack, line_number);
 		line_number++;
 	}

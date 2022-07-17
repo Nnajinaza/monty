@@ -9,7 +9,7 @@ void push(stack_t **stack, unsigned int line_number)
 {
 	char *new_args = global.args;
 
-	if (is_digit(new_args) == 0)
+	if (is_digit(new_args) == 0 && new_args == NULL)
 	{
 		fprintf(stderr, "L%d: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
@@ -25,6 +25,7 @@ void push(stack_t **stack, unsigned int line_number)
 		if(!tail_stack(stack, atoi(global.args)))
 			exit(EXIT_FAILURE);
 	}
+	line_number++;
 }
 
 /**
