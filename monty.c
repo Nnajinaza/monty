@@ -27,21 +27,24 @@ int main(int argc, char **argv)
 		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
-	while (getline(&lineptr, &len, fd) != -1)
+	else
 	{
-		if (*lineptr == '\n')
+		while (getline(&lineptr, &len, fd) != -1)
 		{
+			if (*lineptr == '\n')
+			{
+				line_number++;
+				continue;
+			}
+			str = strtok(lineptr, " \t\n\r\b\a");
+			if (str == NULL || *str == '#')
+			{
+				continue;
+			}
+			global.args = strtok(NULL, " \t\n\r\a\b");
+			get_opts(&stack, str, line_number);
 			line_number++;
-			continue;
 		}
-		str = strtok(lineptr, " \t\n\r");
-		if (str == NULL || *str == '#')
-		{
-			continue;
-		}
-		global.args = strtok(NULL, " \t\n\r");
-		get_opts(&stack, str, line_number);
-		line_number++;
 	}
 	free(lineptr);
 	free_stack(stack);
