@@ -16,12 +16,12 @@ void get_opts(stack_t **stack, char *opt, unsigned int line_number)
 
 	if (!strcmp(opt, "stack"))
 	{
-		global.format = 1;
+		global.format = 0;
 		return;
 	}
 	if (!strcmp(opt, "queue"))
 	{
-		global.format = 0;
+		global.format = 1;
 		return;
 	}
 	for (i = 0; opts[i].opcode != NULL; i++)

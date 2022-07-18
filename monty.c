@@ -35,10 +35,10 @@ int main(int argc, char **argv)
 			continue;
 		}
 		str = strtok(lineptr, " \t\n\r");
-		if (str == NULL)
+		if (str == NULL || *str == '#')
 		{
-			fprintf(stderr, "Error:");
-			exit(EXIT_FAILURE);
+			line_number++;
+			continue;
 		}
 		global.args = strtok(NULL, " \t\n\r");
 		get_opts(&stack, str, line_number);

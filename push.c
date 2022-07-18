@@ -17,13 +17,11 @@ void push(stack_t **stack, unsigned int line_number)
 
 	if (global.format == 0)
 	{
-		if (!head_stack(stack, atoi(new_args)))
-			exit(EXIT_FAILURE);
+		head_stack(stack, atoi(new_args));
 	}
 	else
 	{
-		if (!tail_stack(stack, atoi(new_args)))
-			exit(EXIT_FAILURE);
+		tail_stack(stack, atoi(new_args));
 	}
 }
 
@@ -61,9 +59,10 @@ stack_t *tail_stack(stack_t **stack, const int n)
 	stack_t *new = malloc(sizeof(stack_t));
 	stack_t *current = *stack;
 
-	if (stack == NULL || new == NULL)
+	if (new == NULL)
 	{
-		fprintf(stderr, "Error: malloc failed");
+		fprintf(stderr, "Error: malloc failed\n");
+		free(new);
 		exit(EXIT_FAILURE);
 	}
 
@@ -101,9 +100,10 @@ stack_t *head_stack(stack_t **stack, const int n)
 	stack_t *new;
 
 	new = malloc(sizeof(stack_t));
-	if (new == NULL || stack == NULL)
+	if (new == NULL)
 	{
-		fprintf(stderr, "Error: malloc failed");
+		fprintf(stderr, "Error: malloc failed\n");
+		free(new);
 		exit(EXIT_FAILURE);
 	}
 	new->n = n;
