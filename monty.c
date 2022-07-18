@@ -34,7 +34,6 @@ int main(int argc, char **argv)
 			if (*lineptr == '\n')
 			{
 				line_number++;
-				continue;
 			}
 			str = strtok(lineptr, " \t\n\r\b\a");
 			if (str == NULL || str[0] == '#')
