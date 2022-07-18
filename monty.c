@@ -35,7 +35,7 @@ int main(int argc, char **argv)
 			continue;
 		}
 		str = strtok(lineptr, " \t\n\r");
-		if (*str == '#')
+		if (str == NULL || *str == '#')
 		{
 			continue;
 		}
