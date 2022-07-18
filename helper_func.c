@@ -37,7 +37,7 @@ int is_digit(char *string)
 	while (string[i] != '\0')
 	{
 		if (string[i] == '-')
-			continue;
+			string++;
 		if (isdigit(string[i]) == 0)
 			return (0);
 		string++;
