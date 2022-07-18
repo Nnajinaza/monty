@@ -34,10 +34,10 @@ int is_digit(char *string)
 
 	if (!string || *string == '\0')
 		return (0);
-	if (string[i] == '-')
-		string++;
 	while (string[i] != '\0')
 	{
+		if (string[i] == '-')
+			continue;
 		if (isdigit(string[i]) == 0)
 			return (0);
 		string++;
