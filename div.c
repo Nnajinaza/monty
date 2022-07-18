@@ -22,7 +22,7 @@ void _div(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 	second = (*stack)->next->n;
-	sum = first / second;
+	sum = second / first;
 	pop(stack, line_number);
 	(*stack)->n = sum;
 }
