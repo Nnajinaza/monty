@@ -31,14 +31,11 @@ int main(int argc, char **argv)
 	{
 		if (*lineptr == '\n')
 		{
-			line_number++;
 			continue;
 		}
 		str = strtok(lineptr, " \t\n\r");
 		if (str == NULL || *str == '#')
 		{
-			free(str);
-			line_number++;
 			continue;
 		}
 		global.args = strtok(NULL, " \t\n\r");
