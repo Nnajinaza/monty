@@ -40,7 +40,7 @@ void rotr(stack_t **stack, unsigned int line_count)
 	stack_t *right;
 
 	(void) line_count;
-	if (stack == NULL || *stack == NULL)
+	if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
 		return;
 
 	right = *stack;
